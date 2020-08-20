@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:recase_string_extension/recase.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key key}) : super(key: key);
+class SearchResultPage extends StatelessWidget {
+  const SearchResultPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class SearchPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Swipe to search by $typeOther',
+                                      'Swipe to search by ${typeOther}',
                                       style: TextStyle(
                                         color: Color(0xff445262),
                                         fontSize: 11,
@@ -122,7 +122,7 @@ class SearchPage extends StatelessWidget {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            hintText: 'What $type are you looking for?',
+                            hintText: 'What ${type} are you looking for?',
                             hintStyle: TextStyle(
                               color: Color(0xff8894A2),
                               fontSize: 14,
@@ -145,61 +145,109 @@ class SearchPage extends StatelessWidget {
                   topRight: Radius.circular(25),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Flexible(
-                    child: ListView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 23, horizontal: 35),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 23, horizontal: 35),
-                      children: [
-                        SearchOptionItem(text: 'My search history'),
-                        Divider(),
-                        SearchOptionItem(text: 'My favourite recipes'),
-                        Divider(),
-                        SearchOptionItem(text: 'Easy Mexican Casserole'),
-                        Divider(),
-                        SearchOptionItem(text: 'Thai Chicken Balls'),
-                        Divider(),
-                        SearchOptionItem(text: 'Honey Mustard Pork Chops'),
-                        Divider(),
-                        SearchOptionItem(text: 'Salsa Chicken Rice Casserole'),
-                        Divider(),
-                        SearchOptionItem(
-                            text: 'Banana Cinnamon Roll Casserole'),
-                      ],
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: () {},
-                    child: Container(
-                      padding: EdgeInsets.only(
-                        bottom: 3,
-                      ),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 15),
                       decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Color(0xff34A853),
-                            width: 2.0,
+                          border: Border.all(
+                            width: 1.0,
+                            color: Color(0xffB4C2D3),
                           ),
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(10.0)),
                       child: Text(
-                        'Explore more recipes',
+                        '10 Recipes found',
                         style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff34A853),
+                          color: Color(0xff8894A2),
+                          fontSize: 12,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: GridView.count(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 2,
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          children: [
+                            SearchResultHit('Sausage & Peppers Group', 1),
+                            SearchResultHit('Strawberry Wonders', 2),
+                            SearchResultHit('Pro-bros', 3),
+                            SearchResultHit('Colours of Strawberry', 4),
+                            SearchResultHit('Food fitfam', 5),
+                            SearchResultHit('Veges Gang', 6),
+                            SearchResultHit('Toast With Peanut Butter...', 7),
+                            SearchResultHit('Waffle Berries Closeup', 8),
+                            SearchResultHit('Salmon And Lox', 9),
+                            SearchResultHit('Plated Bagel & Lox', 10),
+                          ]),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SearchResultHit extends StatelessWidget {
+  final String text;
+
+  final int index;
+
+  SearchResultHit(
+    this.text,
+    this.index, {
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            offset: Offset(0, 5),
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset('assets/search_result_hit$index.png'),
+          SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 14,
+                color: Color(0xff0A0A0A),
+              ),
+              softWrap: true,
+            ),
+          ),
+        ],
       ),
     );
   }
