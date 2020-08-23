@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   flutter_swiper: ^1.1.6
   recase_string_extension: ^1.0.0
+  smooth_star_rating: ^1.1.1
 
 dev_dependencies:
   flutter_test:
