@@ -233,7 +233,7 @@ class SearchResultHit extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('assets/search_result_hit$index.png'),
+          Image.asset('assets/recipe$index.png'),
           SizedBox(
             width: 10,
           ),

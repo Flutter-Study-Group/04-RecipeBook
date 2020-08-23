@@ -49,7 +49,7 @@ class ChatsPage extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Image.asset(
-                      'assets/chats_logo.png',
+                      'assets/recipebook_logo.png',
                     ),
                   ),
                 ),

@@ -80,15 +80,16 @@ class ChatPage extends StatelessWidget {
                     Flexible(
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: new BorderRadius.circular(10.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
-                                offset: Offset(0, 4),
-                                blurRadius: 4,
-                              )
-                            ]),
+                          color: Colors.white,
+                          borderRadius: new BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.08),
+                              offset: Offset(0, 4),
+                              blurRadius: 4,
+                            ),
+                          ],
+                        ),
                         child: TextField(
                           decoration: InputDecoration(
                             filled: true,
