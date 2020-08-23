@@ -95,7 +95,7 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset('assets/chats_chat$index.png'),
+      leading: Image.asset('assets/people$index.png'),
       contentPadding: EdgeInsets.all(0),
       dense: true,
       title: Padding(

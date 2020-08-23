@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NetworksPage extends StatelessWidget {
-  const NetworksPage({Key key}) : super(key: key);
+class FriendsPage extends StatelessWidget {
+  const FriendsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class NetworksPage extends StatelessWidget {
                       width: 15,
                     ),
                     Text(
-                      'Networks',
+                      'Friends',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -79,7 +79,7 @@ class NetworksPage extends StatelessWidget {
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  hintText: 'Search Networks',
+                  hintText: 'Search Friends',
                   hintStyle: TextStyle(
                     color: Color(0xff8894A2),
                     fontSize: 14,
@@ -92,7 +92,7 @@ class NetworksPage extends StatelessWidget {
               height: 25,
             ),
             Text(
-              'Networks you joined',
+              'My Friends',
               textAlign: TextAlign.start,
               style: TextStyle(
                 fontSize: 16,
@@ -103,59 +103,15 @@ class NetworksPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Expanded(
-              child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 15,
-                  childAspectRatio: 2,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  children: [
-                    NetworkItem('Sausage & Peppers Group', 1),
-                    NetworkItem('Strawberry Wonders', 2),
-                    NetworkItem('Pro-bros', 3),
-                    NetworkItem('Colours of Strawberry', 4),
-                    NetworkItem('Food fitfam', 5),
-                    NetworkItem('Veges Gang', 6),
-                  ]),
-            ),
-            SizedBox(
-              height: 29,
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: FloatingActionButton(
-                onPressed: null,
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                backgroundColor: Color(0xff34A853),
-              ),
-            ),
-            FlatButton(
-              onPressed: () {},
-              child: Container(
-                padding: EdgeInsets.only(
-                  bottom: 3,
-                ),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Color(0xff34A853),
-                      width: 2.0,
-                    ),
-                  ),
-                ),
-                child: Text(
-                  'Explore more networks',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff34A853),
-                  ),
-                ),
+            Flexible(
+              child: ListView(
+                padding: EdgeInsets.symmetric(vertical: 36),
+                children: [
+                  FriendItem('Adebayo Apercu', '100K Friends', 1),
+                  FriendItem('Ronke Igboegwu', '200 Friends', 2),
+                  FriendItem('Ekaite Akande', '10K Friends', 3),
+                  FriendItem('Adedunni Nwaneri', '190 Friends', 4),
+                ],
               ),
             ),
           ],
@@ -165,53 +121,80 @@ class NetworksPage extends StatelessWidget {
   }
 }
 
-class NetworkItem extends StatelessWidget {
-  final String text;
-
+class FriendItem extends StatelessWidget {
+  final String title;
+  final String subtitle;
   final int index;
 
-  NetworkItem(
-    this.text,
+  FriendItem(
+    this.title,
+    this.subtitle,
     this.index, {
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            offset: Offset(0, 5),
-            blurRadius: 5,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7),
+      child: Container(
+        padding: EdgeInsets.all(4),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset('assets/recipe$index.png'),
-          SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xff0A0A0A),
-              ),
-              softWrap: true,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              offset: Offset(0, 5),
+              blurRadius: 5,
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset('assets/people$index.png'),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(
+                    subtitle,
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  'Remove Friend',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              color: Color(0xff979797),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
